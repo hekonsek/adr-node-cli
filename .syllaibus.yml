@@ -2,4 +2,5 @@ syllabus:
   description: Guidance for Node CLI architecture and tooling choices.
   topics:
     - Node CLI frameworks:
+        - util.parseArgs
         - Commander.js
