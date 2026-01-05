@@ -23,9 +23,10 @@ Cons:
 
 ## Alternatives considered
 
-* **yargs** – Powerful and mature, but the configuration style is more verbose and less intuitive. Much less popular than Commander.
-* **oclif** – Very capable framework, but heavier-weight and better suited for large CLIs with plugins; overkill for our current needs. Much less popular than Commander.
-* **Custom argument parsing / util.parseArgs** – Maximum flexibility, but would require more effort to implement and maintain, with no clear benefit over a standard library.
+- **yargs**. Powerful and mature, but the configuration style is more verbose and less intuitive. Much less popular than Commander.
+- **oclif**. Very capable framework, but heavier-weight and better suited for large CLIs with plugins; overkill for our current needs. Much less popular than Commander.
+- **util.parseArgs**. No support for subcommands and help docs messages. Only basic arguments/flags parsing. It is always better to start with Commander.js even for simple applications - Commander is super simple but scales as application gets more complicated. 
+- **Custom argument parsing**. Maximum flexibility, but would require more effort to implement and maintain, with no clear benefit over a dedicated library.
 
 
 # ADR: Separate command-line logic from core/domain/business logic
