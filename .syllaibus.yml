@@ -6,3 +6,11 @@ syllabus:
     - Node CLI frameworks:
         - util.parseArgs (Node built-in)
         - Commander.js (Most popular)
+    - Security:
+        - What Makes CLIs Special:
+            - Local execution context
+            - Direct OS access
+            - User permissions & privileges
+            - Often run in CI/CD with elevated credentials
+        - Tools:
+            - npm audit
