@@ -64,7 +64,7 @@ Cons:
 
 - **Keep CLI and business logic mixed in one file**. Simpler initial setup, but leads to tightly coupled, hard-to-test, and hard-to-evolve codebases.
 
-# Core emits typed domain events; CLI renders output via Reporter abstraction
+# Core emits typed domain events; CLI renders output via Listener abstraction
 
 ## Context
 
