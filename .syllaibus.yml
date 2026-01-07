@@ -11,4 +11,7 @@ syllabus:
             - Local execution context
             - Direct OS access
             - User permissions & privileges
+            - Often relies on invoking other system commands
             - Often run in CI/CD with elevated credentials
+        - Best practices:
+            - Use execFile instead of exec and spawn to avoid shell injection
