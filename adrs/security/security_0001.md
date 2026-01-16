@@ -1,10 +1,5 @@
 # ADR: Use execFile Instead of exec (and shell-enabled spawn) to Prevent Shell Injection
 
-- **Status:** Accepted
-- **Date:** 2026-01-07
-- **Decision Makers:** Engineering team
-- **Technical Story:** Secure OS command execution in Node.js CLI applications
-
 ## Context
 
 Our Node.js CLI application occasionally needs to invoke external programs (e.g., `git`, `docker`, `kubectl`, `terraform`, or internal binaries). This introduces a high-risk boundary: **untrusted input** from CLI arguments, environment variables, config files, or upstream automation may influence the executed command.
@@ -23,7 +18,7 @@ We want a default approach that is safe, consistent, and cross-platform.
 
 We will **use `child_process.execFile()` as the default mechanism** for invoking external programs from our CLI.
 
-We will avoid using `child_process.exec() in production code.
+We will avoid using `child_process.exec()` in production code.
 
 We will also avoid using `spawn()` with a shell (`{ shell: true }`) or any pattern that reintroduces shell parsing (e.g., `spawn("sh", ["-c", "..."])`, `spawn("cmd.exe", ["/c", "..."])`) unless an explicit exception is approved and documented.
 
