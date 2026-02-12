@@ -64,7 +64,7 @@ Cons:
 
 - **Keep CLI and business logic mixed in one file**. Simpler initial setup, but leads to tightly coupled, hard-to-test, and hard-to-evolve codebases.
 
-# Core emits typed domain events; CLI renders output via Listener abstraction
+# CLI should listen to events from core logic via listeners
 
 ## Context
 
@@ -87,11 +87,10 @@ The core needs a mechanism to communicate **what is happening** without deciding
 
 ## Decision
 
-Introduce a **Listener** port interface in the core module.
+Introduce a **Listener** port interface in the core module, then implement listener in CLI to react to events (for example to print output). 
 
 - Core logic:
-  - depends on a `Listener`
-  - emits **typed, semantic domain events**
+  - uses listener interface reference to generate events
   - returns structured results or throws typed errors
 - CLI:
   - provides concrete given `Listener` callback implementation during core logic invocation
@@ -103,32 +102,39 @@ This follows Ports & Adapters (Hexagonal Architecture) principles.
 ### Example
 
 ```ts
-// core.ts
+// core/example.ts
 
-export type ProgressEvent = {
-      message: string;
-      current: number;
-      total: number;
-    }
-
-/** Output port for core logic */
-export interface ProgressListener {
-  onProgressEvent(event: ProgressEvent): void;
+export interface ExampleServiceListener {
+  onGreeting(greeting: string): void;
 }
+
+export class ExampleService {
+  constructor(private readonly listener: ExampleServiceListener) {}
+
+  helloWorld(name: string): void {
+    // Some core domain logic here
+    const greeting = `Hello ${name}!`;
+
+    // Emit event
+    this.listener.onGreeting(greeting);
+  }
+}
+
 ```
 
 Usage in CLI:
 
 ```ts
-// cli.ts
-import { runCoreTask } from "./core";
-import type { ProgressListener } from "./core";
+// cli/cli.ts
+import { ExampleService } from "../core/example";
 
-const result = await runCoreTask(parsedArgs, {
-  onProgressEvent(event) {
-    process.stdout.write(`\r${event.message} ${event.current}/${event.total}`);
+const service = new ExampleService({
+  onGreeting(greeting: string): void {
+    console.log(greeting);
   },
 });
+service.helloWorld("Henry");
+
 ```
 
 ## Consequences
