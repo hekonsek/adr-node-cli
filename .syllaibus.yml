@@ -6,6 +6,9 @@ syllabus:
     - Node CLI frameworks:
         - util.parseArgs (Node built-in)
         - Commander.js (Most popular)
+    - Visual effects:
+        - Chalk (Colorful output)
+        - Ora (Spinners)
     - Security:
         - What makes CLIs special:
             - Local execution context
