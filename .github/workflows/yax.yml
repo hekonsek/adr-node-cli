@@ -20,6 +20,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Install spex
+        run: npm install -g https://github.com/hekonsek/spex/archive/refs/tags/v0.3.0.tar.gz
+
+      - name: Spex validate
+        run: spex validate
+
       - name: Install yax via pipx
         run: pipx install yaxai
 
