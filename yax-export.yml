@@ -1,7 +1,7 @@
 build:
   agentsmd:
     from:
-      - file:adrs/**/*.md
+      - file:spex/adr/**/*.md
     output: _agents.md
     metadata:
       name: ADR (Architecture Decision Record) collection for Node CLI
