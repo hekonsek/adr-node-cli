@@ -9,6 +9,8 @@ syllabus:
     - Visual effects:
         - Chalk (Colorful output)
         - Ora (Spinners)
+    - Logging:
+        - Configuring logger with CLI options 
     - Security:
         - What makes CLIs special:
             - Local execution context
