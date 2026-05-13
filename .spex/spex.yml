@@ -1,2 +1,3 @@
 packages:
   - hekonsek/syllaibus
+  - hekonsek/dataformat-adr
